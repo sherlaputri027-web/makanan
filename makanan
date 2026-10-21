@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartMenu - Kafe Milenial</title>
+    
+    <!-- Bagian CSS: Mengatur Tampilan dan Desain (Styling) -->
+    <style>
+        /* Reset dasar agar margin dan padding konsisten */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            padding-bottom: 40px;
+        }
+
+        /* Header Kafe */
+        header {
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Tombol Kategori Menu (Filter) */
+        .category-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px 15px;
+            overflow-x: auto;
+        }
+
+        .filter-btn {
+            background-color: white;
+            border: 2px solid #ff7e5f;
+            color: #ff7e5f;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: #ff7e5f;
+            color: white;
+        }
+
+        /* Daftar Menu (Grid Layout) */
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Kartu Menu Individual */
+        .menu-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background-color: #ddd; /* Placeholder jika gambar belum ada */
+        }
+
+        .menu-info {
+            padding: 15px;
+        }
+
+        .menu-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #222;
+        }
+
+        .menu-desc {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .menu-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-price {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+        .order-btn {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .order-btn:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Identitas Kafe -->
+    <header>
+        <h1>Kafe Kumpul Pemuda</h1>
+        <p>Silakan pilih menu favoritmu langsung dari ponsel!</p>
+    </header>
+
+    <!-- Tombol Filter Kategori -->
+    <div class="category-container">
+        <button class="filter-btn active" onclick="filterMenu('all')">Semua Menu</button>
+        <button class="filter-btn" onclick="filterMenu('makanan')">Makanan</button>
+        <button class="filter-btn" onclick="filterMenu('minuman')">Minuman</button>
+        <button class="filter-btn" onclick="filterMenu('dessert')">Dessert</button>
+    </div>
+
+    <!-- Kontainer Utama Daftar Menu -->
+    <main class="menu-container" id="menuList">
+        
+        <!-- Item 1: Makanan -->
+        <div class="menu-card" data-category="makanan">
